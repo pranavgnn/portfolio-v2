@@ -1,3 +1,5 @@
+import { motion } from "motion/react";
+
 import SectionLayout from "../SectionLayout";
 
 import { Input } from "../ui/input";
@@ -14,57 +16,60 @@ import {
 
 import { Linkedin, Github, Instagram, Mail } from "lucide-react";
 
+const ContactLink = ({
+  href,
+  icon: Icon,
+  text,
+}: {
+  href: string;
+  icon: React.FC;
+  text?: string;
+}) => {
+  text =
+    text ||
+    href
+      .replace(/https?:\/\/(www\.)?/, "")
+      .replace("mailto:", "")
+      .replace(/\/$/, "");
+
+  return (
+    <motion.li
+      className="flex items-center gap-2 mb-4"
+      initial={{ x: 0 }}
+      whileHover={{ x: 2 }}
+    >
+      <Icon />
+      <a
+        href={href}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="hover:underline"
+      >
+        {text}
+      </a>
+    </motion.li>
+  );
+};
+
 const Contact = () => {
   return (
     <SectionLayout id="contact" title="contact me">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-16">
         <div className="self-center">
           <ul>
-            <li className="flex items-center gap-2 mb-4">
-              <Mail />
-              <a
-                href="mailto:pranavgnayak@gmail.com"
-                className="hover:underline"
-              >
-                pranavgnayak@gmail.com
-              </a>
-            </li>
-
-            <li className="flex items-center gap-2 mb-4">
-              <Linkedin />
-              <a
-                href="https://www.linkedin.com/in/pranavgnayak/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="hover:underline"
-              >
-                linkedin.com/in/pranavgnayak
-              </a>
-            </li>
-
-            <li className="flex items-center gap-2 mb-4">
-              <Github />
-              <a
-                href="https://github.com/pranavgnn"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="hover:underline"
-              >
-                github.com/pranavgnn
-              </a>
-            </li>
-
-            <li className="flex items-center gap-2 mb-4">
-              <Instagram />
-              <a
-                href="https://www.instagram.com/pranav.idk/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="hover:underline"
-              >
-                instagram.com/pranav.idk
-              </a>
-            </li>
+            <ContactLink href="mailto:pranavgnayak@gmail.com" icon={Mail} />
+            <ContactLink
+              href="https://www.github.com/pranavgnn"
+              icon={Github}
+            />
+            <ContactLink
+              href="https://www.linkedin.com/in/pranavgnayak/"
+              icon={Linkedin}
+            />
+            <ContactLink
+              href="https://www.instagram.com/pranav.idk"
+              icon={Instagram}
+            />
           </ul>
         </div>
         <Card className="p-4 border-border border rounded-md">

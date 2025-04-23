@@ -1,5 +1,7 @@
 // import { useRef, MouseEvent as ReactMouseEvent } from "react";
 
+import { motion } from "motion/react";
+
 import { Button } from "../ui/button";
 
 const Hero = () => {
@@ -17,15 +19,31 @@ const Hero = () => {
       // onMouseMove={handleMouseMove}
     >
       <div className="space-y-8">
-        <h1 className="font-bold text-5xl font-poppins text-branding">
+        <motion.h1
+          className="font-bold text-5xl font-poppins text-branding"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.75 }}
+          whileHover={{ scale: 1.05 }}
+        >
           Pranav G Nayak
-        </h1>
-        <h2 className="text-lg md:text-2xl">
+        </motion.h1>
+        <motion.h2
+          className="text-lg md:text-2xl"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.75, delay: 0.25 }}
+        >
           Fullstack | Automation | Scraping | Cybersecurity
-        </h2>
+        </motion.h2>
       </div>
 
-      <div className="space-x-4">
+      <motion.div
+        className="space-x-4"
+        initial={{ opacity: 0, scale: 0.97, y: 10 }}
+        whileInView={{ opacity: 1, scale: 1, y: 0 }}
+        transition={{ duration: 0.75, delay: 0.5 }}
+      >
         <Button
           size="lg"
           className="bg-branding hover:bg-branding/80 text-xl p-6"
@@ -41,7 +59,7 @@ const Hero = () => {
         <Button size="lg" variant="outline" className="text-xl p-6">
           <a href="#contact">Contact Me</a>
         </Button>
-      </div>
+      </motion.div>
     </section>
   );
 };

@@ -1,3 +1,5 @@
+import { motion } from "motion/react";
+
 import { Separator } from "./ui/separator";
 
 import { cn } from "@/lib/utils";
@@ -43,7 +45,11 @@ const SectionLayout = ({
       className={cn("py-24 md:py-32 px-8 md:min-h-screen md:snap-start", alternate && "bg-secondary/50")}
     >
       <div className="max-w-4xl mx-auto space-y-6">
-        <div className="relative group cursor-pointer" onClick={handleCopyLink}>
+        <motion.div className="relative group cursor-pointer" onClick={handleCopyLink}
+          initial={{ opacity: 0, y: -10 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          whileHover={{ x: 2 }}
+        >
           <Link
             className="absolute translate-y-1/2 -translate-x-full -left-2 group-hover:block hidden"
             id={id}
@@ -51,9 +57,13 @@ const SectionLayout = ({
           <h1 className="font-poppins text-3xl text-branding group-hover:underline">
             {title}
           </h1>
-        </div>
+        </motion.div>
         <Separator />
-        <div className="space-y-4">{children}</div>
+        <motion.div className="space-y-4"
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.75 }}
+        >{children}</motion.div>
       </div>
     </section>
   );

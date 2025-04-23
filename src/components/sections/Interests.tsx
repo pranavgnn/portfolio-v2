@@ -1,11 +1,8 @@
+import { motion } from "motion/react";
+
 import SectionLayout from "../SectionLayout";
 
-import {
-  Card,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "../ui/card";
+import { Card, CardDescription, CardHeader, CardTitle } from "../ui/card";
 
 const InterestCard = ({
   title,
@@ -15,12 +12,16 @@ const InterestCard = ({
   description: string;
 }) => {
   return (
-    <Card className="p-4 border-border border rounded-md">
-      <CardHeader>
-        <CardTitle className="font-normal font-poppins text-lg">{title}</CardTitle>
-        <CardDescription>{description}</CardDescription>
-      </CardHeader>
-    </Card>
+    <motion.div whileHover={{ scale: 1.01, y: -4 }}>
+      <Card className="p-4 border-border border rounded-md w-full h-full hover:shadow-md hover:shadow-branding/15">
+        <CardHeader>
+          <CardTitle className="font-normal font-poppins text-lg">
+            {title}
+          </CardTitle>
+          <CardDescription>{description}</CardDescription>
+        </CardHeader>
+      </Card>
+    </motion.div>
   );
 };
 
