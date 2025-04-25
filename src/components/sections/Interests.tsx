@@ -1,5 +1,3 @@
-import { motion } from "motion/react";
-
 import SectionLayout from "../SectionLayout";
 
 import { Card, CardDescription, CardHeader, CardTitle } from "../ui/card";
@@ -12,7 +10,7 @@ const InterestCard = ({
   description: string;
 }) => {
   return (
-    <motion.div whileHover={{ scale: 1.01, y: -4 }}>
+    <div className="hover:scale-101 hover:-translate-y-1 duration-200">
       <Card className="p-4 border-border border rounded-md w-full h-full hover:shadow-md hover:shadow-branding/15">
         <CardHeader>
           <CardTitle className="font-normal font-poppins text-lg">
@@ -21,7 +19,7 @@ const InterestCard = ({
           <CardDescription>{description}</CardDescription>
         </CardHeader>
       </Card>
-    </motion.div>
+    </div>
   );
 };
 

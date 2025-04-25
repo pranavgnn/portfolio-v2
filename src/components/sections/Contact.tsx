@@ -1,5 +1,3 @@
-import { motion } from "motion/react";
-
 import SectionLayout from "../SectionLayout";
 
 import { Input } from "../ui/input";
@@ -33,10 +31,8 @@ const ContactLink = ({
       .replace(/\/$/, "");
 
   return (
-    <motion.li
-      className="flex items-center gap-2 mb-4"
-      initial={{ x: 0 }}
-      whileHover={{ x: 2 }}
+    <li
+      className="flex items-center gap-2 mb-4 duration-500 hover:translate-x-1 hover:duration-100"
     >
       <Icon />
       <a
@@ -47,7 +43,7 @@ const ContactLink = ({
       >
         {text}
       </a>
-    </motion.li>
+    </li>
   );
 };
 

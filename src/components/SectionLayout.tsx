@@ -1,12 +1,12 @@
-import { motion } from "motion/react";
-
-import { Separator } from "./ui/separator";
-
-import { cn } from "@/lib/utils";
+import { useEffect } from "react";
 
 import { Link } from "lucide-react";
-import { useEffect, useRef } from "react";
 import { toast } from "sonner";
+
+import { useInView } from "react-intersection-observer";
+import { cn } from "@/lib/utils";
+
+import { Separator } from "./ui/separator";
 
 interface SectionLayoutProps {
   id?: string;
@@ -23,7 +23,10 @@ const SectionLayout = ({
 }: SectionLayoutProps) => {
   id = id || title.toLowerCase();
 
-  const sectionRef = useRef<HTMLDivElement>(null);
+  const [sectionRef, inView] = useInView({
+    threshold: 0.5,
+    triggerOnce: false,
+  });
 
   const handleCopyLink = () => {
     navigator.clipboard.writeText(window.location.origin + `/#${id}`);
@@ -34,7 +37,8 @@ const SectionLayout = ({
 
   useEffect(() => {
     if (window.location.hash === `#${id}`) {
-      sectionRef.current?.scrollIntoView();
+      const element = document.getElementById(id);
+      element?.scrollIntoView();
     }
   }, [id]);
 
@@ -42,13 +46,18 @@ const SectionLayout = ({
     <section
       id={id}
       ref={sectionRef}
-      className={cn("py-24 md:py-32 px-8 md:min-h-screen md:snap-start", alternate && "bg-secondary/50")}
+      className={cn(
+        "py-24 md:py-32 px-8 md:min-h-screen md:snap-start",
+        alternate && "bg-secondary/50"
+      )}
     >
       <div className="max-w-4xl mx-auto space-y-6">
-        <motion.div className="relative group cursor-pointer" onClick={handleCopyLink}
-          initial={{ opacity: 0, y: -10 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          whileHover={{ x: 2 }}
+        <div
+          className={cn(
+            "relative group cursor-pointer duration-500 opacity-0 hover:translate-x-1 hover:duration-100",
+            inView && "animate-in fade-in slide-in-from-bottom-8 opacity-100"
+          )}
+          onClick={handleCopyLink}
         >
           <Link
             className="absolute translate-y-1/2 -translate-x-full -left-2 group-hover:block hidden"
@@ -57,13 +66,16 @@ const SectionLayout = ({
           <h1 className="font-poppins text-3xl text-branding group-hover:underline">
             {title}
           </h1>
-        </motion.div>
+        </div>
         <Separator />
-        <motion.div className="space-y-4"
-          initial={{ opacity: 0, y: 50 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.75 }}
-        >{children}</motion.div>
+        <div
+          className={cn(
+            "space-y-4 opacity-0 duration-600 delay-100",
+            inView && "animate-in fade-in slide-in-from-bottom-8 opacity-100"
+          )}
+        >
+          {children}
+        </div>
       </div>
     </section>
   );

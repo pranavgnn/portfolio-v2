@@ -1,6 +1,7 @@
 // import { useRef, MouseEvent as ReactMouseEvent } from "react";
 
-import { motion } from "motion/react";
+import { useInView } from "react-intersection-observer";
+import { cn } from "@/lib/utils";
 
 import { Button } from "../ui/button";
 
@@ -12,37 +13,42 @@ const Hero = () => {
   //   cursorRef.current!.style.top = `${event.clientY}px`;
   // };
 
+  const [sectionRef, inView] = useInView({
+    threshold: 0.5,
+    triggerOnce: false,
+  });
+
   return (
     <section
+      ref={sectionRef}
       id="#"
       className="min-h-screen flex flex-col items-center justify-center text-center bg-gradient-to-b to-background from-branding/10 gap-16 md:min-h-screen md:snap-start"
-      // onMouseMove={handleMouseMove}
     >
       <div className="space-y-8">
-        <motion.h1
-          className="font-bold text-5xl font-poppins text-branding"
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.75 }}
-          whileHover={{ scale: 1.05 }}
+        <h1
+          className={cn(
+            "font-bold text-5xl font-poppins text-branding duration-500 opacity-0",
+            inView && "animate-in fade-in slide-in-from-bottom-8 opacity-100"
+          )}
         >
           Pranav G Nayak
-        </motion.h1>
-        <motion.h2
-          className="text-lg md:text-2xl"
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.75, delay: 0.25 }}
+        </h1>
+        <h2
+          className={cn(
+            "text-lg md:text-2xl duration-600 delay-100 opacity-0",
+            inView && "animate-in fade-in slide-in-from-bottom-8 opacity-100"
+          )}
         >
           Fullstack | Automation | Scraping | Cybersecurity
-        </motion.h2>
+        </h2>
       </div>
 
-      <motion.div
-        className="space-x-4"
-        initial={{ opacity: 0, scale: 0.97, y: 10 }}
-        whileInView={{ opacity: 1, scale: 1, y: 0 }}
-        transition={{ duration: 0.75, delay: 0.5 }}
+      <div
+        className={cn(
+          "space-x-4 duration-700 delay-200 opacity-0",
+          inView &&
+            "animate-in fade-in slide-in-from-bottom-4 zoom-in-80 opacity-100"
+        )}
       >
         <Button
           size="lg"
@@ -59,7 +65,7 @@ const Hero = () => {
         <Button size="lg" variant="outline" className="text-xl p-6">
           <a href="#contact">Contact Me</a>
         </Button>
-      </motion.div>
+      </div>
     </section>
   );
 };
