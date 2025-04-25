@@ -46,24 +46,23 @@ const Hero = () => {
 
           <div
             className={cn(
-              "space-x-4 duration-700 delay-200 opacity-0",
+              "duration-700 delay-200 opacity-0 flex flex-col md:flex-row items-center justify-center gap-3",
               inView &&
                 "animate-in fade-in slide-in-from-bottom-4 zoom-in-80 opacity-100"
             )}
           >
             <Button
               size="lg"
-              className="bg-branding hover:bg-branding/80 text-xl p-6"
+              className="bg-branding hover:bg-branding/80 text-xl w-64 md:w-max p-6 hover:shadow-md hover:shadow-branding/15 hover:scale-101 hover:-translate-y-1 duration-200"
             >
               <a href="#projects">View Projects</a>
             </Button>
 
-            {/* <div
-          ref={cursorRef}
-          className="absolute w-8 h-8 blur-md bg-branding/25 rounded-full"
-        /> */}
-
-            <Button size="lg" variant="outline" className="text-xl p-6">
+            <Button
+              size="lg"
+              variant="outline"
+              className="text-xl w-full md:w-max p-6 hover:shadow-md hover:shadow-branding/15 hover:scale-101 hover:-translate-y-1 duration-200"
+            >
               <a href="#contact">Contact Me</a>
             </Button>
           </div>
