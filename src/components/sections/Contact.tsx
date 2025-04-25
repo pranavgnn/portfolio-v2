@@ -57,7 +57,7 @@ const Contact = () => {
               icon={Github}
             />
             <ContactLink
-              href="https://www.linkedin.com/in/pranavgnayak/"
+              href="https://www.linkedin.com/in/pranav-g-nayak-a68101146/"
               icon={Linkedin}
             />
             <ContactLink
