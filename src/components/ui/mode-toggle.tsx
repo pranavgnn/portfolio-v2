@@ -22,7 +22,7 @@ export function ModeToggle({ className, includeName }: ModeToggleProps) {
       variant="outline"
       size={includeName ? "sm" : "icon"}
       onClick={toggleTheme}
-      className={cn("", className)}
+      className={cn("cursor-pointer", className)}
     >
       {theme === "dark" ? (
         <Moon className="h-4 w-4 text-gray-500" />
