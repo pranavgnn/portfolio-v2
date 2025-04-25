@@ -29,7 +29,9 @@ const NavItem = ({
       variant="ghost"
       className={cn(
         "font-poppins text-md font-normal duration-300",
-        selected ? "text-primary scale-105" : "text-muted-foreground"
+        selected
+          ? "text-primary scale-105 before:content-['>'] before:text-branding"
+          : "text-muted-foreground"
       )}
     >
       <a href={href || `#${text.toLowerCase()}`}>{text}</a>
