@@ -1,4 +1,4 @@
-import SectionLayout from "../SectionLayout";
+import SectionLayout from "../layouts/OtherLayout";
 
 import { Card, CardDescription, CardHeader, CardTitle } from "../ui/card";
 
@@ -11,7 +11,7 @@ const InterestCard = ({
 }) => {
   return (
     <div className="hover:scale-101 hover:-translate-y-1 duration-200">
-      <Card className="p-4 border-border border rounded-md w-full h-full hover:shadow-md hover:shadow-branding/15">
+      <Card className="p-4 border-border border rounded-md w-full h-full hover:shadow-md hover:shadow-branding/15 duration-200">
         <CardHeader>
           <CardTitle className="font-normal font-poppins text-lg">
             {title}

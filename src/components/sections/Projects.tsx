@@ -1,4 +1,4 @@
-import SectionLayout from "../SectionLayout";
+import SectionLayout from "../layouts/OtherLayout";
 
 import { Badge } from "../ui/badge";
 

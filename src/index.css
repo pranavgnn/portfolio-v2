@@ -134,6 +134,6 @@
   }
 
   :root {
-    @apply md:h-screen md:overflow-y-scroll md:snap-y md:snap-mandatory;
+    /* @apply md:h-screen md:overflow-y-scroll md:snap-y md:snap-mandatory; */
   }
 }

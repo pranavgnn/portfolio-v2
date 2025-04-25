@@ -1,4 +1,4 @@
-import SectionLayout from "../SectionLayout";
+import SectionLayout from "../layouts/OtherLayout";
 
 import { Input } from "../ui/input";
 import { Button } from "../ui/button";
@@ -31,9 +31,7 @@ const ContactLink = ({
       .replace(/\/$/, "");
 
   return (
-    <li
-      className="flex items-center gap-2 mb-4 duration-500 hover:translate-x-1 hover:duration-100"
-    >
+    <li className="flex items-center gap-2 mb-4 duration-500 hover:translate-x-1 hover:duration-100">
       <Icon />
       <a
         href={href}
