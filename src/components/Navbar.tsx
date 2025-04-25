@@ -44,8 +44,8 @@ const Navbar = () => {
     <div className="fixed top-0 left-0 w-full z-50">
       <div className="flex items-center justify-between md:justify-around p-4 bg-background/50 backdrop-blur-md">
         <a href="/" className="text-branding">
-          <span className="font-semibold text-xl">{"<P/> "}</span>
-          <span className="text-primary">pranavgn</span>
+          <span className="font-semibold text-xl font-poppins">{"<P/> "}</span>
+          <span className="text-primary font-poppins">pranavgn</span>
         </a>
 
         <div className="flex items-center gap-2 md:hidden">
