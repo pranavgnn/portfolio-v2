@@ -1,4 +1,4 @@
-import { ThemeProvider } from "./components/ThemeProvider";
+import { ThemeProvider } from "./contexts/ThemeContext";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import { Toaster } from "./components/ui/sonner";
@@ -12,7 +12,6 @@ import Contact from "./components/sections/Contact";
 import { SectionProvider } from "./contexts/SectionContext";
 
 function App() {
-
   return (
     <ThemeProvider>
       <SectionProvider>

@@ -1,6 +1,6 @@
 import { Button } from "./ui/button";
 import { Separator } from "./ui/separator";
-// import { ModeToggle } from "./ui/mode-toggle";
+import { ModeToggle } from "./ui/mode-toggle";
 import {
   Sheet,
   SheetTrigger,
@@ -76,7 +76,7 @@ const Navbar = () => {
                     text="contact"
                     selected={activeSection == "contact"}
                   />
-                  {/* <ModeToggle className="text-muted-foreground" /> */}
+                  <ModeToggle className="text-muted-foreground" includeName />
                 </nav>
               </SheetHeader>
             </SheetContent>
@@ -89,7 +89,7 @@ const Navbar = () => {
           <NavItem text="projects" selected={activeSection == "projects"} />
           <NavItem text="interests" selected={activeSection == "interests"} />
           <NavItem text="contact" selected={activeSection == "contact"} />
-          {/* <ModeToggle className="md:block hidden text-muted-foreground" /> */}
+          <ModeToggle />  
         </nav>
       </div>
       <Separator />
