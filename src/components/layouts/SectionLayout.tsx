@@ -39,7 +39,7 @@ const SectionLayout = ({
   useEffect(() => {
     if (inView) {
       setActiveSection(id);
-    //   window.history.replaceState(null, "", `#${id}`);
+      //   window.history.replaceState(null, "", `#${id}`);
     }
   }, [inView, id, setActiveSection]);
 

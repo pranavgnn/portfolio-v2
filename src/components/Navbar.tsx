@@ -89,7 +89,7 @@ const Navbar = () => {
           <NavItem text="projects" selected={activeSection == "projects"} />
           <NavItem text="interests" selected={activeSection == "interests"} />
           <NavItem text="contact" selected={activeSection == "contact"} />
-          <ModeToggle />  
+          <ModeToggle />
         </nav>
       </div>
       <Separator />
