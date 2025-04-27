@@ -1,5 +1,6 @@
-import SectionLayout from "../layouts/OtherLayout";
-import Highlight from "../Highlight";
+import SectionLayout from "@/components/layouts/OtherLayout";
+
+import Highlight from "@/components/Highlight";
 
 const About = () => {
   return (

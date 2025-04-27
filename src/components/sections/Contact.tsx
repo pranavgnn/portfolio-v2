@@ -1,24 +1,24 @@
-import SectionLayout from "../layouts/OtherLayout";
+import { ChangeEvent, useState } from "react";
+import { toast } from "sonner";
+import { Linkedin, Github, Instagram, Mail, Loader2 } from "lucide-react";
 
-import { Input } from "../ui/input";
-import { Button } from "../ui/button";
-import { Textarea } from "../ui/textarea";
-import { Label } from "../ui/label";
+import type { ContactFormData } from "@/types";
+import { sendEmail } from "@/lib/api";
+import { contactSchema } from "@/schemas/contactSchema";
+
+import SectionLayout from "@/components/layouts/OtherLayout";
+
+import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
+import { Textarea } from "@/components/ui/textarea";
+import { Label } from "@/components/ui/label";
 import {
   Card,
   CardContent,
   CardFooter,
   CardHeader,
   CardTitle,
-} from "../ui/card";
-
-import { Linkedin, Github, Instagram, Mail, Loader2 } from "lucide-react";
-
-import { sendEmail } from "@/lib/api";
-import { ContactFormData } from "@/types";
-import { ChangeEvent, useState } from "react";
-import { toast } from "sonner";
-import { contactSchema } from "@/schemas/contactSchema";
+} from "@/components/ui/card";
 
 const ContactLink = ({
   href,

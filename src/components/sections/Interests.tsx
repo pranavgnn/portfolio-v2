@@ -1,6 +1,6 @@
-import SectionLayout from "../layouts/OtherLayout";
+import SectionLayout from "@/components/layouts/OtherLayout";
 
-import { Card, CardDescription, CardHeader, CardTitle } from "../ui/card";
+import { Card, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 
 const InterestCard = ({
   title,
