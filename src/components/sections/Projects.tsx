@@ -1,6 +1,6 @@
-import SectionLayout from "../layouts/OtherLayout";
+import SectionLayout from "@/components/layouts/OtherLayout";
 
-import { Badge } from "../ui/badge";
+import { Badge } from "@/components/ui/badge";
 
 const ProjectCard = ({}) => {
   return (

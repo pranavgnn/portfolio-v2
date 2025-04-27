@@ -1,6 +1,11 @@
-import { Button } from "./ui/button";
-import { Separator } from "./ui/separator";
-import { ModeToggle } from "./ui/mode-toggle";
+import { AlignJustify } from "lucide-react";
+
+import { cn } from "@/lib/utils";
+import { useSection } from "@/contexts/SectionContext";
+
+import { Button } from "@/components/ui/button";
+import { Separator } from "@/components/ui/separator";
+import { ModeToggle } from "@/components/ui/mode-toggle";
 import {
   Sheet,
   SheetTrigger,
@@ -8,12 +13,6 @@ import {
   SheetHeader,
   SheetContent,
 } from "./ui/sheet";
-
-import { AlignJustify } from "lucide-react";
-
-import { useSection } from "@/contexts/SectionContext";
-
-import { cn } from "@/lib/utils";
 
 const NavItem = ({
   href,

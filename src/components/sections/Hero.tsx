@@ -2,9 +2,9 @@
 
 import { cn } from "@/lib/utils";
 
-import SectionLayout from "../layouts/SectionLayout";
+import SectionLayout from "@/components/layouts/SectionLayout";
 
-import { Button } from "../ui/button";
+import { Button } from "@/components/ui/button";
 
 const Hero = () => {
   // const cursorRef = useRef<HTMLDivElement>(null);
