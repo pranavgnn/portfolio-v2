@@ -1,41 +1,39 @@
-import { useState, useEffect } from "react";
-
-import { Moon, Sun, Laptop } from "lucide-react";
+import { Moon, Sun } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
-import { useTheme } from "@/components/ThemeProvider";
+import { useTheme } from "@/contexts/ThemeContext";
 
 import { cn } from "@/lib/utils";
 
-type Theme = "light" | "dark" | "system";
+interface ModeToggleProps {
+  className?: string;
+  includeName?: boolean;
+}
 
-export function ModeToggle({ className }: { className?: string }) {
+export function ModeToggle({ className, includeName }: ModeToggleProps) {
   const { theme, setTheme } = useTheme();
-  const themes: Theme[] = ["system", "light", "dark"];
-  const [themeIndex, setThemeIndex] = useState(0);
 
   const toggleTheme = () => {
-    setThemeIndex((prevIndex) => (prevIndex + 1) % themes.length);
-    setTheme(themes[themeIndex]);
+    setTheme(theme == "dark" ? "light" : "dark");
   };
-
-  useEffect(() => {
-    setTheme(themes[themeIndex]);
-  }, [themeIndex, themes, setTheme]);
 
   return (
     <Button
-      variant="ghost"
-      size="icon"
+      variant="outline"
+      size={includeName ? "sm" : "icon"}
       onClick={toggleTheme}
-      className={cn("w-10 h-10 p-0", className)}
+      className={cn("cursor-pointer", className)}
     >
       {theme === "dark" ? (
-        <Sun className="w-4 h-4" />
-      ) : theme === "light" ? (
-        <Moon className="w-4 h-4" />
+        <Moon className="h-4 w-4 text-gray-500" />
       ) : (
-        <Laptop className="w-4 h-4" />
+        <Sun className="h-4 w-4 text-yellow-500" />
+      )}
+
+      {includeName && (
+        <span className="text-sm font-poppins font-normal text-muted-foreground">
+          {`${theme.charAt(0).toUpperCase()}${theme.slice(1)} Mode`}
+        </span>
       )}
     </Button>
   );

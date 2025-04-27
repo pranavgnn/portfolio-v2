@@ -1,6 +1,6 @@
 import { Button } from "./ui/button";
 import { Separator } from "./ui/separator";
-// import { ModeToggle } from "./ui/mode-toggle";
+import { ModeToggle } from "./ui/mode-toggle";
 import {
   Sheet,
   SheetTrigger,
@@ -10,6 +10,8 @@ import {
 } from "./ui/sheet";
 
 import { AlignJustify } from "lucide-react";
+
+import { useSection } from "@/contexts/SectionContext";
 
 import { cn } from "@/lib/utils";
 
@@ -26,8 +28,10 @@ const NavItem = ({
     <Button
       variant="ghost"
       className={cn(
-        "font-poppins text-md font-normal",
-        !selected && "text-muted-foreground"
+        "font-poppins text-md font-normal duration-300",
+        selected
+          ? "text-primary scale-105 before:content-['>'] before:text-branding"
+          : "text-muted-foreground"
       )}
     >
       <a href={href || `#${text.toLowerCase()}`}>{text}</a>
@@ -36,12 +40,14 @@ const NavItem = ({
 };
 
 const Navbar = () => {
+  const { activeSection } = useSection();
+
   return (
     <div className="fixed top-0 left-0 w-full z-50">
       <div className="flex items-center justify-between md:justify-around p-4 bg-background/50 backdrop-blur-md">
         <a href="/" className="text-branding">
-          <span className="font-semibold text-xl">{"<P/> "}</span>
-          <span className="text-primary">pranavgn</span>
+          <span className="font-semibold text-xl font-poppins">{"<P/> "}</span>
+          <span className="text-primary font-poppins">pranavgn</span>
         </a>
 
         <div className="flex items-center gap-2 md:hidden">
@@ -58,12 +64,21 @@ const Navbar = () => {
                 </SheetTitle>
                 <Separator />
                 <nav className="flex flex-col gap-4 w-full">
-                  <NavItem text="/" selected />
-                  <NavItem text="about" />
-                  <NavItem text="projects" />
-                  <NavItem text="interests" />
-                  <NavItem text="contact" />
-                  {/* <ModeToggle className="text-muted-foreground" /> */}
+                  <NavItem text="/" selected={activeSection == ""} />
+                  <NavItem text="about" selected={activeSection == "about"} />
+                  <NavItem
+                    text="projects"
+                    selected={activeSection == "projects"}
+                  />
+                  <NavItem
+                    text="interests"
+                    selected={activeSection == "interests"}
+                  />
+                  <NavItem
+                    text="contact"
+                    selected={activeSection == "contact"}
+                  />
+                  <ModeToggle className="text-muted-foreground" includeName />
                 </nav>
               </SheetHeader>
             </SheetContent>
@@ -71,14 +86,13 @@ const Navbar = () => {
         </div>
 
         <nav className="hidden md:flex items-center gap-4">
-          <NavItem text="/" href="#" selected />
-          <NavItem text="about" />
-          <NavItem text="projects" />
-          <NavItem text="interests" />
-          <NavItem text="contact" />
+          <NavItem text="/" href="#" selected={activeSection == ""} />
+          <NavItem text="about" selected={activeSection == "about"} />
+          <NavItem text="projects" selected={activeSection == "projects"} />
+          <NavItem text="interests" selected={activeSection == "interests"} />
+          <NavItem text="contact" selected={activeSection == "contact"} />
+          <ModeToggle />
         </nav>
-
-        {/* <ModeToggle className="md:block hidden text-muted-foreground" /> */}
       </div>
       <Separator />
     </div>
