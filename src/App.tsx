@@ -5,7 +5,6 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { Toaster } from "@/components/ui/sonner";
 
-// import EasterEgg from "@/components/sections/EasterEgg";
 import Hero from "@/components/sections/Hero";
 import About from "@/components/sections/About";
 import Projects from "@/components/sections/Projects";
@@ -25,8 +24,7 @@ function App() {
         <Contact />
 
         <Footer />
-        {/* <EasterEgg /> */}
-
+        
         <Toaster />
       </SectionProvider>
     </ThemeProvider>
