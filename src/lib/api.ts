@@ -10,7 +10,10 @@ export const sendEmail = async (data: ContactFormData) => {
   });
 
   if (!response.ok) {
-    throw new Error((await response.json())?.message || "Something went wrong");
+    if (response.status === 404)
+      throw new Error("API endpoint not found");
+
+    throw new Error((await response.json()).message);
   }
 
   return response.json();

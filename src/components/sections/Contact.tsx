@@ -82,7 +82,7 @@ const Contact = () => {
       await sendEmail(formData);
       toast.success("Email sent successfully!");
     } catch (error: any) {
-      toast.error(error.message || "Could not send email.");
+      toast.error(error.message);
     } finally {
       setSending(false);
     }
