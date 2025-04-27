@@ -12,7 +12,13 @@ import {
   CardTitle,
 } from "../ui/card";
 
-import { Linkedin, Github, Instagram, Mail } from "lucide-react";
+import { Linkedin, Github, Instagram, Mail, Loader2 } from "lucide-react";
+
+import { sendEmail } from "@/lib/api";
+import { ContactFormData } from "@/types";
+import { ChangeEvent, useState } from "react";
+import { toast } from "sonner";
+import { contactSchema } from "@/schemas/contactSchema";
 
 const ContactLink = ({
   href,
@@ -46,6 +52,42 @@ const ContactLink = ({
 };
 
 const Contact = () => {
+  const [formData, setFormData] = useState<ContactFormData>({
+    name: "",
+    email: "",
+    message: "",
+  });
+  const [sending, setSending] = useState(false);
+
+  const handleChange = (
+    e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value,
+    } as ContactFormData);
+  };
+
+  const handleSubmit = async () => {
+    try {
+      await contactSchema.parseAsync(formData);
+    } catch (error: any) {
+      toast.error(error.errors[0].message || "Invalid form data.");
+      return;
+    }
+
+    setSending(true);
+
+    try {
+      await sendEmail(formData);
+      toast.success("Email sent successfully!");
+    } catch (error: any) {
+      toast.error(error.message || "Could not send email.");
+    } finally {
+      setSending(false);
+    }
+  };
+
   return (
     <SectionLayout id="contact" title="contact me">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-16">
@@ -72,18 +114,37 @@ const Contact = () => {
           </CardHeader>
           <CardContent className="space-y-4">
             <Label htmlFor="name">Name</Label>
-            <Input id="name" placeholder="Your Name" />
+            <Input
+              name="name"
+              placeholder="Your Name"
+              onChange={handleChange}
+            />
             <Label htmlFor="email">Email</Label>
-            <Input id="email" type="email" placeholder="Your Email" />
+            <Input
+              name="email"
+              type="email"
+              placeholder="Your Email"
+              onChange={handleChange}
+            />
             <Label htmlFor="message">Message</Label>
             <Textarea
-              id="message"
+              name="message"
               placeholder="Hello Pranav! I'd like to talk about..."
               rows={4}
+              onChange={handleChange}
             />
           </CardContent>
           <CardFooter className="flex justify-end">
-            <Button type="submit">Send Message</Button>
+            <Button type="submit" onClick={handleSubmit} disabled={sending}>
+              {sending ? (
+                <>
+                  <Loader2 className="animate-spin" />
+                  Sending
+                </>
+              ) : (
+                "Send Message"
+              )}
+            </Button>
           </CardFooter>
         </Card>
       </div>
