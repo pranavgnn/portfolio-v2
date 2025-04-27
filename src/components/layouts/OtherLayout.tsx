@@ -3,8 +3,9 @@ import { toast } from "sonner";
 
 import { cn } from "@/lib/utils";
 
-import SectionLayout from "./SectionLayout";
-import { Separator } from "../ui/separator";
+import SectionLayout from "@/components/layouts/SectionLayout";
+
+import { Separator } from "@/components/ui/separator";
 
 interface OtherLayoutProps {
   id?: string;
